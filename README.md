@@ -8,7 +8,7 @@ Apache License | [Website](https://v0-robotics-landing-page.vercel.app/) | Docs 
 🚪 **Roomi: An Affordable Autonomous Cleaning & Housekeeping Robot** 🧼
 
 🧹 Clean. 🛏️ Make beds. 🧽 Organize.
-💰 Under \~\$900. 🛠️ Assembly in \~3 hours!
+💰 Under \~\$900. 🛠️ Assembly in \~5 hours!
 
 > Inspired by the vision of affordable, reliable, and scalable robotics.
 
@@ -39,7 +39,7 @@ Note: Wait for the full hardware release on 2025.07.19 before purchasing the ite
 
 👣 **Steps**
 
-1. 💵 [Buy the parts](#) — Bill of Materials (BOM)
+1. 💵 [Buy the parts](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSJx5n8vQ6axefWLVfU5Om-5jMr0KQSXPaziQnbyMNoEo5ZU6qLCnzRi-AQa0Jc8n8X-8icOWrnf3P/pubhtml) — Bill of Materials (BOM)
 2. 🖨️ [3D Print accessories](#) — STL files for sensor mounts & chassis
 3. 🔧 [Assemble Roomi](#) — Step-by-step build guide
 4. 💻 [Run the software](#) — Boot Ubuntu + ROS2 or Mujoco sim & go!
