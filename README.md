@@ -62,7 +62,7 @@ You can launch and play (teleoperate) with Roomi using MuJoCo. We provide two en
 * **Basic teleop:**
 
   ```bash
-  python roomi_mujoc.py
+  python roomi_mujoco.py
   ```
 
 * **Advanced motor control:**
