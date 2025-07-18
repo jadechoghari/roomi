@@ -1,4 +1,4 @@
-<img width="2030" height="486" alt="image" src="https://github.com/user-attachments/assets/cecb0322-cf7d-423f-a087-b1cb1f89b29b" />
+![Roomi banner2](assets/Banner2.png)
 
 *Autonomous AI Robot for Hotels and Homes*
 Apache License | [Website](https://v0-robotics-landing-page.vercel.app/) | Docs (soon)
