@@ -1,0 +1,174 @@
+<mujoco model="xml_export">
+    <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast"/>
+    <statistic center="0.3 0 0.4" extent="1"/>
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <global azimuth="120" elevation="-20"/>
+    </visual>
+    <compiler angle="radian" eulerseq="XYZ"/>
+    
+    <!-- Default settings for better stability -->
+    <default>
+        <joint damping="1.0" frictionloss="0.1"/>
+        <geom friction="0.8 0.005 0.0001" condim="3"/>
+    </default>
+    
+    <asset>
+        <mesh name="CartBody" file="meshes/CartBody.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Link1" file="meshes/Link1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Link2" file="meshes/Link2.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Link3" file="meshes/Link3.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Link4" file="meshes/Link4.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Gripper1" file="meshes/Gripper1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Gripper2" file="meshes/Gripper2.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Wheel1" file="meshes/Wheel1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Wheel2" file="meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Caster1" file="meshes/Caster1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Casterwheel1" file="meshes/Casterwheel1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Casterwheel2" file="meshes/Casterwheel2.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Caster2-1" file="meshes/Caster2-1.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Caster3" file="meshes/Caster3.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Casterwheel3" file="meshes/Casterwheel3.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Casterwheel4" file="meshes/Casterwheel4.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Caster4" file="meshes/Caster4.stl" scale="0.001 0.001 0.001" />
+        <mesh name="Head" file="meshes/Head.stl" scale="0.001 0.001 0.001" />
+    </asset>
+    
+    <worldbody>
+        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1" />
+        <geom pos="0 0 0" size="1 1 1" type="plane" rgba="1 0.83 0.61 0.5" />
+        
+        <!-- Fixed base for the cart - constrains it to ground -->
+        <body name="CartBase" pos="-0.36070434086817543 0.08504655135080218 0.0">
+            <!-- Prismatic joints to allow controlled movement in X and Y -->
+            <joint name="cart_slide_x" type="slide" axis="1 0 0" damping="10.0" frictionloss="1.0"/>
+            <joint name="cart_slide_y" type="slide" axis="0 1 0" damping="10.0" frictionloss="1.0"/>
+            
+            <body name="CartBody" pos="0 0 0.6476860000000002" euler="-3.141592653589793 1.1201625736777728e-16 3.141592653589793">
+                <geom name="CartBody_geom" type="mesh" mesh="CartBody" pos="0 0 0" euler="0 0 0" />
+                <inertial mass="95.1784236095956" pos="-0.20447593964617383 -0.0024272104761881813 0.04732716715840256" fullinertia="5.564198505762411 6.377384137985549 2.126998744731979 -0.0038524127958479417 -0.03403896293866646 -0.004759472675187811" />
+                
+                <body name="Link1" pos="0.08070916779049199 0.11768599999999944 0.13018600000000013" euler="1.5707963267948966 9.113506635728877e-17 1.5407258439636616e-30">
+                    <joint name="Revolute-1" type="hinge" axis="2.0881191010488568e-17 0.9999999999999999 8.413408858487542e-17" pos="-0.08070950865866741 -0.03250000000000008 0.11768555135080182" damping="5.0" frictionloss="0.5"/>
+                    <geom name="Link1_geom" type="mesh" mesh="Link1" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="5.463154922292518" pos="-0.025796058275025364 -0.001335953886463343 0.06311771631949911" fullinertia="0.019684979006368716 0.025967138823953732 0.00942635186673926 -0.00028947426661885006 0.007682276286495391 0.0004875912239622495" />
+                    
+                    <body name="Link2" pos="-0.1157091677904942 -0.05249999999999233 0.010185999999999957" euler="1.5707963267948966 -7.113607455813012e-16 -6.213785941878803e-14">
+                        <joint name="Revolute-2" type="hinge" axis="-6.558495943500424e-16 -1.000000000000001 -1.5431598164519828e-16" pos="0.11570965913182409 0.08749955135080183 -0.047499999999999466" damping="3.0" frictionloss="0.3"/>
+                        <geom name="Link2_geom" type="mesh" mesh="Link2" pos="0 0 0" euler="0 0 0" />
+                        <inertial mass="3.543013874470771" pos="0.24981061028427648 0.08994315550367575 -0.04796438499013987" fullinertia="0.004044112113559302 0.04396311424025044 0.04661846126876211 0.007301527583778623 0.00019777017267029156 -1.6731789174305822e-05" />
+                        
+                        <body name="Link3" pos="-6.394884621840901e-16 1.4210854715202004e-16 1.0658141036401502e-15" euler="1.540580395323457e-16 2.2343238370581883e-15 3.184205542873728e-17">
+                            <joint name="Revolute-3" type="hinge" axis="-6.876916497787802e-16 -1.0000000000000016 3.050196333549836e-16" pos="0.36720465913182543 0.11899955135080183 -0.047500000000015516" damping="2.0" frictionloss="0.2"/>
+                            <geom name="Link3_geom" type="mesh" mesh="Link3" pos="0 0 0" euler="0 0 0" />
+                            <inertial mass="2.4179884826365736" pos="0.4749350861114494 0.13594152952376523 -0.04740159511626661" fullinertia="0.0006662521280589328 0.025186600017106008 0.024851355205932714 -0.0005355382525889778 3.1058028043867785e-06 -4.898654346627818e-07" />
+                            
+                            <body name="Link4" pos="0.6916211045021626 0.11700443216368397 0.09121281832136348" euler="-2.9670597283903786 -5.048709793414477e-29 -4.258765602540468e-17">
+                                <joint name="Revolute-4" type="hinge" axis="6.451039937533752e-16 -0.9848077530122116 0.1736481776669119" pos="-0.07292044537033925 0.014736361129303745 0.1382542690686564" damping="1.5" frictionloss="0.15"/>
+                                <geom name="Link4_geom" type="mesh" mesh="Link4" pos="0 0 0" euler="0 0 0" />
+                                <inertial mass="3.018358720167286" pos="-0.03129207410566262 0.04160605720047221 0.13786729084798682" fullinertia="0.002965088905514162 0.0072280786551702034 0.008266946693734512 0.0012555818459064028 -0.0010453711648554694 0.0003442551400464622" />
+                                
+                                <body name="Gripper1" pos="-0.0007264402080338073 0.05875619381158076 -3.560824391144024e-05" euler="3.141591693772419 -0.0005665215701801249 9.989304882886974e-05">
+                                    <joint name="Revolute-5" type="hinge" axis="0.0005752610477369371 -0.17364723156501724 -0.9848077518198847" pos="0.06280362167816854 0.05497618101781009 -0.14669900039436692" damping="1.0" frictionloss="0.1"/>
+                                    <geom name="Gripper1_geom" type="mesh" mesh="Gripper1" pos="0 0 0" euler="0 0 0" />
+                                    <inertial mass="0.3543533349376964" pos="0.09911928285308197 0.07798319816997829 -0.14565768320132225" fullinertia="6.674583958098134e-05 0.00026551721174670117 0.0002866483238765197 1.2312283014222406e-05 -2.2998263411541263e-06 3.8531929258392905e-06" />
+                                </body>
+                                
+                                <body name="Gripper2" pos="0.0007364647827729697 0.058940593158223344 -2.919040136802664e-05" euler="3.141591971183278 -0.0004761849395850755 8.396425910073804e-05">
+                                    <joint name="Revolute-6" type="hinge" axis="0.0004835308415003761 -0.17364750501561632 -0.9848077529141309" pos="0.06132832145865553 0.000994985025297001 -0.13714835285878604" damping="1.0" frictionloss="0.1"/>
+                                    <geom name="Gripper2_geom" type="mesh" mesh="Gripper2" pos="0 0 0" euler="0 0 0" />
+                                    <inertial mass="0.34263924096640214" pos="0.09950844217943408 -0.01907529773808983 -0.12851384844714603" fullinertia="6.583973204113648e-05 0.0002543767132590276 0.0002748495245085483 -1.4106599390403303e-05 2.3844213620645754e-06 3.7183700881611063e-06" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                
+                <body name="Wheel1" pos="-0.03499999999999957 0.10750000000000019 0.07768599999999992" euler="3.141592653589793 -0.0 -9.715861567347195e-35">
+                    <joint name="Revolute-8" type="hinge" axis="-5.551115123125783e-17 1.0000000000000004 8.673617379884205e-19" pos="-0.19481834086817576 -0.04918344864919761 -0.4929990000000002" damping="0.5" frictionloss="0.05"/>
+                    <geom name="Wheel1_geom" type="mesh" mesh="Wheel1" pos="0 0 0" euler="0 0 0" friction="1.2 0.01 0.001"/>
+                    <inertial mass="2.3384087719625772" pos="-0.19481871003829695 -0.04168297794638047 -0.4929991517428002" fullinertia="0.003715741481498922 0.007329882229006726 0.00371573800741426 -2.805933327289277e-17 -1.4087745785448466e-17 2.0858807931226318e-17" />
+                </body>
+                
+                <body name="Wheel2" pos="-0.03499999999999957 0.1075000000000001 0.07768599999999992" euler="3.141592653589793 -0.0 -9.715861567347195e-35">
+                    <joint name="Revolute-9" type="hinge" axis="-5.551115123125783e-17 1.0000000000000004 8.673617379884205e-19" pos="-0.1948183408681758 0.2701715513508024 -0.4929990000000002" damping="0.5" frictionloss="0.05"/>
+                    <geom name="Wheel2_geom" type="mesh" mesh="Wheel2" pos="0 0 0" euler="0 0 0" friction="1.2 0.01 0.001"/>
+                    <inertial mass="2.3384087719625786" pos="-0.19481871003829695 0.262671371244513 -0.4929991517428002" fullinertia="0.003715741481498884 0.007329882229006837 0.003715738007414128 -2.805933327289278e-17 -1.0776281348819608e-16 1.565463750329589e-17" />
+                </body>
+                
+                <body name="Caster3" pos="-0.3831698562302626 -0.10759879014755427 0.6209778621363992" euler="-1.5707963267949225 -3.2621975956418704e-16 -1.5707963267948941">
+                    <joint name="Revolute-10" type="hinge" axis="-3.1659352648643694e-16 0.9999999999999953 2.5728424640782456e-14" pos="-2.387967522412551e-07 0.0335278621363994 -0.025400484637911565" damping="2.0" frictionloss="0.2"/>
+                    <geom name="Caster3_geom" type="mesh" mesh="Caster3" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.08597644723739896" pos="7.810220303945647e-05 0.021144678443234855 -0.01677914952680056" fullinertia="3.042765571121897e-05 3.741935348788122e-05 3.1066765171228235e-05 1.4252140920905163e-07 -1.5539794918430918e-07 6.9875775316692904e-06" />
+                    
+                    <body name="Casterwheel3" pos="-4.728434069193987e-05 -0.0014732000000000323 0.0002540000000001008" euler="1.262177448353619e-29 5.471134174649488e-15 -6.097847543862711e-17">
+                        <joint name="Revolute-11" type="hinge" axis="0.9999999999999992 -6.042879775985561e-16 5.354390683460825e-15" pos="0.013744045543939775 6.213639889982611e-08 -4.846379125469511e-07" damping="0.1" frictionloss="0.01"/>
+                        <geom name="Casterwheel3_geom" type="mesh" mesh="Casterwheel3" pos="0 0 0" euler="0 0 0" friction="1.0 0.01 0.001"/>
+                        <inertial mass="0.3244891448046704" pos="-3.6519163622384945e-29 -3.337729933970127e-28 1.2847500840962283e-14" fullinertia="0.00010112407747755179 6.308091255232567e-05 6.308091256261236e-05 -1.3913575932535137e-19 4.1635973340155984e-19 -1.2426488568071732e-19" />
+                    </body>
+                </body>
+                
+                <body name="Caster2-1" pos="-0.010169856230263008 -0.10759879014755647 0.6209778621363888" euler="-1.5707963267949225 -3.262197595739872e-16 -1.5707963267948941">
+                    <joint name="Revolute-12" type="hinge" axis="-3.1659352649623774e-16 0.9999999999999968 2.5728424640782494e-14" pos="-2.3879675442700723e-07 0.033527862136389204 -0.02540048463791136" damping="2.0" frictionloss="0.2"/>
+                    <geom name="Caster2-1_geom" type="mesh" mesh="Caster2-1" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.08597644723739896" pos="7.810220303945663e-05 0.021144678443234914 -0.016779149526800537" fullinertia="3.042765571121758e-05 3.7419353487879323e-05 3.1066765171228154e-05 1.4252140920907924e-07 -1.5539794918432308e-07 6.9875775316694895e-06" />
+                    
+                    <body name="Casterwheel2" pos="-0.000237999999999996 0.0 4.973799150320702e-16" euler="9.466330862652142e-30 5.4711341746494904e-15 -6.097847543862706e-17">
+                        <joint name="Revolute-13" type="hinge" axis="1.0000000000000013 -6.042879775985551e-16 5.354390683460816e-15" pos="0.013934761203245676 -1.3786361134784693e-07 -4.846379127818574e-07" damping="0.1" frictionloss="0.01"/>
+                        <geom name="Casterwheel2_geom" type="mesh" mesh="Casterwheel2" pos="0 0 0" euler="0 0 0" friction="1.0 0.01 0.001"/>
+                        <inertial mass="0.3244891448046704" pos="-3.655703347750667e-29 -3.3411911126088728e-28 1.2860823517257785e-14" fullinertia="0.00010112407747755347 6.308091255232505e-05 6.308091256261242e-05 -1.391357593259692e-19 3.6214962477729155e-19 -1.58446684321817e-20" />
+                    </body>
+                </body>
+                
+                <body name="Caster1" pos="-0.01016985623026251 0.10840120985244353 0.6213474758873843" euler="-1.5707963267949245 -3.2621975957397764e-16 -1.5707963267948941">
+                    <joint name="Revolute-14" type="hinge" axis="-3.165935264962282e-16 0.9999999999999989 2.78100928119549e-14" pos="-2.387967543368018e-07 0.03352847588738471 -0.025400484637911846" damping="2.0" frictionloss="0.2"/>
+                    <geom name="Caster1_geom" type="mesh" mesh="Caster1" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.08597644723739896" pos="7.810220303946997e-05 0.021144678443235008 -0.016779149526800607" fullinertia="3.0427655711219315e-05 3.7419353487881194e-05 3.106676517122902e-05 1.4252140920905274e-07 -1.5539794918388945e-07 6.98757753166975e-06" />
+                    
+                    <body name="Casterwheel1" pos="-0.00023799999999997825 4.440892098500626e-18 3.552713678800501e-16" euler="6.310887241768095e-30 5.471134174649468e-15 -6.097847543861533e-17">
+                        <joint name="Revolute-15" type="hinge" axis="1.0000000000000013 -6.04287977598568e-16 5.354390683460815e-15" pos="0.013934761203245763 4.758873840222135e-07 -4.846379130593974e-07" damping="0.1" frictionloss="0.01"/>
+                        <geom name="Casterwheel1_geom" type="mesh" mesh="Casterwheel1" pos="0 0 0" euler="0 0 0" friction="1.0 0.01 0.001"/>
+                        <inertial mass="0.3244891448046704" pos="-3.655703347750667e-29 -3.60891078231824e-28 1.2860823517257814e-14" fullinertia="0.00010112407747756041 6.308091255233226e-05 6.308091256261063e-05 -8.492565070170128e-20 3.6214962477733537e-19 -1.5844668453323982e-20" />
+                    </body>
+                </body>
+                
+                <body name="Caster4" pos="-0.3831698562302619 0.10840120985244552 0.6213474758873944" euler="-1.5707963267949245 -3.2621975956417757e-16 -1.5707963267948941">
+                    <joint name="Revolute-16" type="hinge" axis="-3.1659352648642747e-16 0.9999999999999974 2.781009281195486e-14" pos="-2.38796752393911e-07 0.03352847588739468 -0.025400484637912245" damping="2.0" frictionloss="0.2"/>
+                    <geom name="Caster4_geom" type="mesh" mesh="Caster4" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="0.08597644723739896" pos="7.81022030394698e-05 0.02114467844323495 -0.016779149526800638" fullinertia="3.0427655711218645e-05 3.741935348788065e-05 3.106676517122902e-05 1.4252140920905224e-07 -1.5539794918432279e-07 6.987577531669334e-06" />
+                    
+                    <body name="Casterwheel4" pos="0.00023799999999997825 -1.3322676295501878e-17 -8.43769498715119e-17" euler="9.466330862652142e-30 5.471134174649463e-15 6.097847543893019e-17">
+                        <joint name="Revolute-17" type="hinge" axis="-0.9999999999999992 7.262449284761142e-16 -5.354390683460822e-15" pos="-0.013935238796752254 4.758873940743944e-07 -4.846379131739298e-07" damping="0.1" frictionloss="0.01"/>
+                        <geom name="Casterwheel4_geom" type="mesh" mesh="Casterwheel4" pos="0 0 0" euler="0 0 0" friction="1.0 0.01 0.001"/>
+                        <inertial mass="0.3244891448046704" pos="-3.6519163622384945e-29 -3.6051722697675016e-28 1.2847500840962311e-14" fullinertia="0.00010112407747755168 6.308091255232513e-05 6.308091256261236e-05 -8.956527909708745e-20 3.6214962477728573e-19 -4.2949722765711194e-20" />
+                    </body>
+                </body>
+                
+                <body name="Head" pos="-0.3610645053685102 -0.08541048725269372 0.6476860000000002" euler="-3.141592653589793 -1.1201625736777732e-16 3.141592653589793">
+                    <geom name="Head_geom" type="mesh" mesh="Head" pos="0 0 0" euler="0 0 0" />
+                    <inertial mass="49.5573032933033" pos="-0.18022443489451043 0.08269027144059445 0.8290115813797607" fullinertia="0.31804708058251663 0.3091370459251763 0.5183173018405756 0.0003859555699874397 0.03760474153210058 -0.000368825407414785" />
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    
+    <actuator>
+        <!-- Cart movement actuators -->
+        <position name="act_cart_x" joint="cart_slide_x" kp="1000" kv="100"/>
+        <position name="act_cart_y" joint="cart_slide_y" kp="1000" kv="100"/>
+        
+        <!-- Arm actuators with better control gains -->
+        <position name="act_Revolute_1" joint="Revolute-1" kp="500" kv="50"/>
+        <position name="act_Revolute_2" joint="Revolute-2" kp="300" kv="30"/>
+        <position name="act_Revolute_3" joint="Revolute-3" kp="200" kv="20"/>
+        <position name="act_Revolute_4" joint="Revolute-4" kp="150" kv="15"/>
+        <position name="act_Revolute_5" joint="Revolute-5" kp="100" kv="10"/>
+        <position name="act_Revolute_6" joint="Revolute-6" kp="100" kv="10"/>
+
+        <!-- Wheel actuators -->
+        <velocity name="act_Wheel1" joint="Revolute-8" kv="10"/>
+        <velocity name="act_Wheel2" joint="Revolute-9" kv="10"/>
+    </actuator>
+
+</mujoco>

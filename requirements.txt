@@ -1,0 +1,5 @@
+mujoco==3.3.0
+mujoco-python-viewer==0.1.4
+glfw==2.5.5
+numpy>=1.23,<1.27
+pip>=23.0
