@@ -32,17 +32,20 @@ Apache License | [Website](https://v0-robotics-landing-page.vercel.app/) | Docs 
 
 ---
 
-🚀 **Get Started**
+🚀 **Hardware Features**
 
-Note: Wait for the full hardware release on 2025.07.19 before purchasing the items on BOM.
+* Custom tuned PID controllers based on RP2040 + AS5600 Encoder for each joint
+* High-torque, long reach 5DOF robot arm
+* Simple teleop from a modified SO100 Arm
+* Friendly light-up OLED eyes
 
 
 👣 **Steps**
 
 1. 💵 [Buy the parts](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSJx5n8vQ6axefWLVfU5Om-5jMr0KQSXPaziQnbyMNoEo5ZU6qLCnzRi-AQa0Jc8n8X-8icOWrnf3P/pubhtml) — Bill of Materials (BOM)
-2. 🖨️ [3D Print accessories](#) — STL files for sensor mounts & chassis
+2. 🖨️ [3D Print the parts]
 3. 🔧 [Assemble Roomi](#) — Step-by-step build guide
-4. 💻 [Run the software](#) — Boot Ubuntu + ROS2 or Mujoco sim & go!
+4. 💻 [Run the software](#) — Flash the firmware, load up the code, and ready to go!
 
 **Requirements:**
 
