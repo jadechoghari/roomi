@@ -39,6 +39,7 @@ Apache License | [Website](https://v0-robotics-landing-page.vercel.app/) | Docs 
 * Simple teleop from a modified SO100 Arm
 * Friendly light-up OLED eyes
 
+https://github.com/user-attachments/assets/0ee9a5cc-6e7f-4fe1-86ab-d5a4582c7d71
 
 👣 **Steps**
 
@@ -53,8 +54,6 @@ Apache License | [Website](https://v0-robotics-landing-page.vercel.app/) | Docs 
 * Platformio (for flashing firmware)
 * MuJoCo (for real or sim)
 * Basic Git + pip + terminal skills
-
-Here’s the updated README section with your note added in the correct style and tone:
 
 ---
 
