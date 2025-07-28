@@ -3,8 +3,6 @@ import sapien
 from mani_skill.agents.base_agent import BaseAgent, Keyframe
 from mani_skill.agents.controllers import *
 from mani_skill.agents.registration import register_agent
-from mani_skill.utils.common import deepcopy_dict
-
 @register_agent()
 class Roomi(BaseAgent):
     uid = "roomi"
@@ -14,7 +12,7 @@ class Roomi(BaseAgent):
     keyframes = dict(
         rest=Keyframe(
             pose=sapien.Pose(p=[0, 0, 0.2]),  # Raise base slightly above ground
-            qpos=np.zeros(10),  # Adjust length to match your robot's DOFs
+            qpos=np.zeros(18),
         )
     )
 
@@ -45,7 +43,9 @@ class Roomi(BaseAgent):
             self.arm_joint_names,
             stiffness=self.arm_stiffness,
             damping=self.arm_damping,
-            force_limit=self.arm_force_limit
+            force_limit=self.arm_force_limit,
+            lower=-0.1,
+            upper=0.1,
         )
 
         # Cartesian slider controller
@@ -53,14 +53,18 @@ class Roomi(BaseAgent):
             self.cart_joint_names,
             stiffness=self.cart_stiffness,
             damping=self.cart_damping,
-            force_limit=self.cart_force_limit
+            force_limit=self.cart_force_limit,
+            lower=-0.1,
+            upper=0.1,
         )
 
         # Wheels velocity controller
         wheel_ctrl = PDJointVelControllerConfig(
             self.wheel_joint_names,
             damping=self.wheel_damping,
-            force_limit=self.wheel_force_limit
+            force_limit=self.wheel_force_limit,
+            lower=-0.1,
+            upper=0.1,
         )
 
         return deepcopy_dict(dict(
